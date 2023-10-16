@@ -8,22 +8,6 @@ namespace bustub {
 template <class T>
 auto Trie::Get(std::string_view key) const -> const T * {
   throw NotImplementedException("Trie::Get is not implemented.");
-  
-  // std::shared_ptr<const TrieNode> ptr_node = root_;
-
-  // for (auto c : key) {
-  //   auto it = ptr_node->children_.find(c);
-  //   if (it == ptr_node->children_.end()) {
-  //     return nullptr;
-  //   }
-  //   ptr_node = it->second;
-  // }
-
-  // auto value_node = dynamic_cast<const TrieNodeWithValue<T> *>(ptr_node.get());
-  // if (value_node == nullptr) {
-  //   return nullptr;
-  // }
-  // return value_node->value_.get();
 
   // You should walk through the trie to find the node corresponding to the key. If the node doesn't exist, return
   // nullptr. After you find the node, you should use `dynamic_cast` to cast it to `const TrieNodeWithValue<T> *`. If
@@ -48,47 +32,6 @@ auto Trie::Put(std::string_view key, T value) const -> Trie {
   // Note that `T` might be a non-copyable type. Always use `std::move` when creating `shared_ptr` on that value.
   throw NotImplementedException("Trie::Put is not implemented.");
 
-  // std::shared_ptr<TrieNode> new_root;
-  // auto clone_node = this->root_->Clone();
-  // new_root = std::shared_ptr<TrieNode>(std::move(clone_node));
-  // auto node_ptr = new_root;
-
-  // for (auto c : key) {
-  //   // it return type : std::shared_ptr<const TrieNode>
-  //   auto it = node_ptr->children_.find(c);
-  //   if (it == new_root->children_.end()) {
-  //     // c not exists, create a new node with no children
-  //     std::shared_ptr<TrieNode> new_node = std::make_shared<TrieNode>();
-  //     node_ptr->children_[c] = new_node;
-  //     // move to next node
-  //     node_ptr = new_node;
-  //   } else {
-  //     // c exists, clone "children" node 
-  //     auto node = it->second->Clone();
-  //     auto cloned_node = std::shared_ptr<TrieNode>(std::move(node));
-  //     // move to next node
-  //     node_ptr = cloned_node;
-  //   }
-  // }   // end of loop
-
-  // // handle last node
-  // auto value_node = std::dynamic_pointer_cast<TrieNodeWithValue<T>>(node_ptr);
-  // if (value_node == nullptr) {
-  //   // not a value node, create a new value node
-  //   auto new_node = std::make_shared<TrieNodeWithValue<T>>(std::make_shared<T>(std::move(value)));
-  //   value_node = new_node;
-  //   node_ptr->is_value_node_ = false;
-  //   node_ptr = value_node;
-  // } else {
-  //   // is a value node, update value
-  //   value_node->value_ = std::make_shared<T>(std::move(value));
-  // }
-  // node_ptr->is_value_node_ = true;
-
-  // return Trie(new_root);
-  
-  // You should walk through the trie and create new nodes if necessary. If the node corresponding to the key already
-  // exists, you should create a new `TrieNodeWithValue`.
   std::shared_ptr<T> shared_value = std::make_shared<T>(std::move(value));
   std::vector<std::shared_ptr<const TrieNode>> node_stack;  // store the same node
   std::shared_ptr<const TrieNode> cur_node = root_;
