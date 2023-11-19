@@ -22,7 +22,7 @@ TEST(TrieStoreTest, BasicTest) {
   store.Put<uint32_t>("233", 2333);
   {
     auto guard = store.Get<uint32_t>("233");
-    ASSERT_EQ(**guard, 2333);
+    ASSERT_EQ(**guard, 2333);  // 没通过
   }
   store.Remove("233");
   {

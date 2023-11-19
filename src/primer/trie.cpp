@@ -22,7 +22,6 @@ auto Trie::Get(std::string_view key) const -> const T * {
     }
   }
 
-  //
   auto res = dynamic_cast<const TrieNodeWithValue<T> *>(target.get());
 
   if (res && res->is_value_node_) {
@@ -78,7 +77,7 @@ auto Trie::Put(std::string_view key, T value) const -> Trie {
     auto target = stack[i];
     if (target) {
       stack[i] = stack[i]->Clone();
-      const_cast<TrieNode*>(stack[i].get())->children_[k] = stack[i + 1];
+      const_cast<TrieNode *>(stack[i].get())->children_[k] = stack[i + 1];
     } else {
       std::map<char, std::shared_ptr<const TrieNode>> mp{{k, stack[i + 1]}};
       stack[i] = std::make_shared<const TrieNode>(mp);
