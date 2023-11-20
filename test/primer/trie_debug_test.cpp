@@ -1,7 +1,9 @@
 #include <fmt/format.h>
 #include <zipfian_int_distribution.h>
 #include <bitset>
+#include <cstdint>
 #include <functional>
+#include <memory>
 #include <numeric>
 #include <optional>
 #include <random>

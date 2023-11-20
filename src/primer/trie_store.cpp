@@ -23,7 +23,6 @@ auto TrieStore::Get(std::string_view key) -> std::optional<ValueGuard<T>> {
     return std::nullopt;
   }
   return std::optional<ValueGuard<T>>(ValueGuard(root, *value));
-
 }
 
 template <class T>
